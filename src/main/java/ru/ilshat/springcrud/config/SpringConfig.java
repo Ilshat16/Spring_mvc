@@ -1,5 +1,7 @@
 package ru.ilshat.springcrud.config;
 
+import java.util.Objects;
+
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -61,9 +63,9 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() {
     	DriverManagerDataSource dataSource = new DriverManagerDataSource();
     	
-    	dataSource.setDriverClassName(environment.getProperty("driver"));
+    	dataSource.setDriverClassName(Objects.requireNonNull(environment.getProperty("driver")));
     	dataSource.setUrl(environment.getProperty("url"));
-    	dataSource.setUsername(environment.getProperty("username"));
+    	dataSource.setUsername(environment.getProperty("user_name"));
     	dataSource.setPassword(environment.getProperty("password"));
     	
     	return dataSource;
