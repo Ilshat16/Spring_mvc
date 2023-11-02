@@ -8,6 +8,8 @@
   <name>spring-mvc Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
+	<maven.compiler.source>20</maven.compiler.source>
+    <maven.compiler.target>20</maven.compiler.target>
     <spring.version>6.0.13</spring.version>
   </properties>
   <dependencies>
@@ -63,7 +65,6 @@
 	    <artifactId>postgresql</artifactId>
 	    <version>42.6.0</version>
 	</dependency>
-
   </dependencies>
   <build>
     <finalName>spring-mvc</finalName>

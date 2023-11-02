@@ -28,13 +28,14 @@ public class PersonDAO {
 		return jdbcTemplate.query("SELECT * FROM person", new BeanPropertyRowMapper<>(Person.class));		
 	}
 	
+	@SuppressWarnings("deprecation")
 	public Person show(int id) {
 		return jdbcTemplate.query("SELECT * FROM person WHERE id=?", new Object[] {id}, new BeanPropertyRowMapper<>(Person.class))
 				.stream().findAny().orElse(null);
 	}
 	
 	public void save(Person person) {
-		jdbcTemplate.update("INSERT INTO person VALUES(1, ?, ?, ?)", person.getName(), 
+		jdbcTemplate.update("INSERT INTO person(name, age, email) VALUES(?, ?, ?)", person.getName(), 
 							person.getAge(), person.getEmail());		
 	}
 	 
