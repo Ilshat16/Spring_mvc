@@ -26,7 +26,6 @@ public class PeopleController {
 	
 	@Autowired
 	public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
-		super();
 		this.personDAO = personDAO;
 		this.personValidator = personValidator;
 	}
