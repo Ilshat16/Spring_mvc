@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import ru.ilshat.springcrud.dao.PersonDAO;
 import ru.ilshat.springcrud.models.Person;
 
-@Controller
 @RequestMapping("/admin")
 public class AdminController {
 	private final PersonDAO personDAO;
