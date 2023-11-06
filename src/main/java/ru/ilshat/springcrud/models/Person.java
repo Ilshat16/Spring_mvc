@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -151,4 +152,25 @@ public class Person {
 		return "Person [id=" + id + ", name=" + name + ", age=" + age + ", email=" + email + ", address=" + address
 				+ "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(address, age, createAt, dateBirth, email, id, mood, name);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return Objects.equals(address, other.address) && age == other.age && Objects.equals(createAt, other.createAt)
+				&& Objects.equals(dateBirth, other.dateBirth) && Objects.equals(email, other.email) && id == other.id
+				&& mood == other.mood && Objects.equals(name, other.name);
+	}
+	
+	
 }

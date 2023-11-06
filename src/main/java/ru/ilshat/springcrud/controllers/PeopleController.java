@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
+import ru.ilshat.springcrud.dao.PersonDAO;
 import ru.ilshat.springcrud.models.Person;
 import ru.ilshat.springcrud.services.ItemService;
 import ru.ilshat.springcrud.services.PeopleService;
@@ -26,23 +27,28 @@ public class PeopleController {
 	
 	private final PeopleService peopleService;
 	private final ItemService itemService;
+	private final PersonDAO personDAO;
 	
 	@Autowired
-	public PeopleController(PeopleService peopleService, PersonValidator personValidator, ItemService itemService) {
+	public PeopleController(PeopleService peopleService, PersonValidator personValidator, 
+			ItemService itemService, PersonDAO personDAO) {
 		this.peopleService = peopleService;
 		this.personValidator = personValidator;
 		this.itemService = itemService;
+		this.personDAO = personDAO;
 	}
 
 	@GetMapping()
 	public String index(Model model) {
 		model.addAttribute("people", peopleService.findAll());
+		personDAO.testNPlus1();
 		return "people/index";
 	}
 
 	@GetMapping("/{id}")
 	public String show(@PathVariable("id") int id, Model model) {
 		model.addAttribute("person", peopleService.findOne(id));
+		model.addAttribute("items", itemService.findByOwner(peopleService.findOne(id)));
 		return "people/show";
 	}
 	
