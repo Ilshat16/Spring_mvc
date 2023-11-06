@@ -27,8 +27,12 @@ public class PersonValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		Person person = (Person) target;
 		
+		if(person.getDateBirth() == null)
+			errors.rejectValue("dateBirth", "", "Illegal format date");
+		
 		if(peopleService.findOne(person.getEmail()) != null)
 			errors.rejectValue("email", "", "This email is already taken");
+		
 	}
 
 }

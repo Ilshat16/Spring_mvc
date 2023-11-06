@@ -1,6 +1,11 @@
 package ru.ilshat.springcrud.models;
 
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -40,6 +45,15 @@ public class Person {
 	@OneToMany(mappedBy = "owner")
 	private List<Item> items;
 	
+	@Column(name = "date_birth")
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	private Calendar dateBirth;
+	
+	@Column(name = "create_at")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Calendar createAt;
+	
 	public Person() {
 	}
 	
@@ -48,6 +62,22 @@ public class Person {
 		this.age = age;
 		this.email = email;
 		this.address = address;
+	}
+
+	public Calendar getDateBirth() {
+		return dateBirth;
+	}
+
+	public void setDateBirth(Calendar dateBirth) {
+		this.dateBirth = dateBirth;
+	}
+
+	public Calendar getCreateAt() {
+		return createAt;
+	}
+
+	public void setCreateAt(Calendar createAt) {
+		this.createAt = createAt;
 	}
 
 	public int getAge() {

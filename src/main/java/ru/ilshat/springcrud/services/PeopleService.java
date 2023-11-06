@@ -1,5 +1,6 @@
 package ru.ilshat.springcrud.services;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class PeopleService {
 	
 	@Transactional
 	public void save(Person person) {
+		person.setCreateAt(Calendar.getInstance());
 		peopleRepository.save(person);
 	}
 	
