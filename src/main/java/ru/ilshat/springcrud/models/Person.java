@@ -1,6 +1,7 @@
 package ru.ilshat.springcrud.models;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -54,6 +55,9 @@ public class Person {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar createAt;
 	
+	@Enumerated(EnumType.ORDINAL)
+	private Mood mood;
+	
 	public Person() {
 	}
 	
@@ -64,8 +68,21 @@ public class Person {
 		this.address = address;
 	}
 
+	public Mood getMood() {
+		return mood;
+	}
+
+	public void setMood(Mood mood) {
+		this.mood = mood;
+	}
+
 	public Calendar getDateBirth() {
 		return dateBirth;
+	}
+	
+	public String getDateBirthToString() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return sdf.format(dateBirth.getTime());
 	}
 
 	public void setDateBirth(Calendar dateBirth) {

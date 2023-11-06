@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ru.ilshat.springcrud.models.Mood;
 import ru.ilshat.springcrud.models.Person;
 import ru.ilshat.springcrud.repositories.PeopleRepository;
 
@@ -39,6 +40,7 @@ public class PeopleService {
 	@Transactional
 	public void save(Person person) {
 		person.setCreateAt(Calendar.getInstance());
+		person.setMood(Mood.CALM);
 		peopleRepository.save(person);
 	}
 	
