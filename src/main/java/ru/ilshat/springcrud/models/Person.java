@@ -1,5 +1,7 @@
 package ru.ilshat.springcrud.models;
 
+import java.util.List;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.Min;
@@ -34,6 +36,9 @@ public class Person {
 	@Pattern(regexp="[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message="Address should be this format: Country, City, Postal code (6 digits)")
 	@Column(name = "address")
 	private String address;
+	
+	@OneToMany(mappedBy = "owner")
+	private List<Item> items;
 	
 	public Person() {
 	}
@@ -83,6 +88,15 @@ public class Person {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
 	}
 
 	@Override

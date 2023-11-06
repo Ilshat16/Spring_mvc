@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
 import ru.ilshat.springcrud.models.Person;
+import ru.ilshat.springcrud.services.ItemService;
 import ru.ilshat.springcrud.services.PeopleService;
 import ru.ilshat.springcrud.util.PersonValidator;
 
@@ -24,16 +25,18 @@ public class PeopleController {
 	private PersonValidator personValidator;
 	
 	private final PeopleService peopleService;
+	private final ItemService itemService;
 	
 	@Autowired
-	public PeopleController(PeopleService peopleService, PersonValidator personValidator) {
+	public PeopleController(PeopleService peopleService, PersonValidator personValidator, ItemService itemService) {
 		this.peopleService = peopleService;
 		this.personValidator = personValidator;
+		this.itemService = itemService;
 	}
 
 	@GetMapping()
 	public String index(Model model) {
-		model.addAttribute("people", peopleService.findAll());
+		model.addAttribute("people", peopleService.findAll());		
 		return "people/index";
 	}
 
