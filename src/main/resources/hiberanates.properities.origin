@@ -4,6 +4,6 @@ hibernate.connection.url=
 hibernate.connection.username=
 hibernate.connection.password=
 
-# Hibernate config
+# Hibernate configuration
 hibernate.dialect=
 hibernate.show_sql=
